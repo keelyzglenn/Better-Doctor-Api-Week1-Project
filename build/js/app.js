@@ -6,33 +6,36 @@ var apiKey = require('./../.env').apiKey;
 
 function Patient(){
 }
-//
-// Patient.prototype.getDoctors = function(medicalIssue) {
-//   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=toothache&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
-//    .then(function(result) {
-//       console.log(result);
-//     })
-//    .fail(function(error){
-//       console.log("fail");
-//     });
-// };
 
-Patient.prototype.getDoctors = function(medicalIssue) {
-  $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + medicalIssue + "&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
+// Patient.prototype.getDoctors = function(medicalIssue) {
+//   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + medicalIssue + "&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
+//     .then(function(response) {
+//       for(var i=0; i< response.data.length; i ++)
+//       console.log(response.data[i].practices[0].name);
+//     })
+//      .fail(function(error){
+//         console.log("fail");
+//       });
+//   };
+
+  Patient.prototype.getDoctors = function(medicalIssue, displayDoctor) {
+    $.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' + medicalIssue + '&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=20&user_key=' + apiKey)
     .then(function(response) {
-      for(var i=0; i< response.data.length; i ++)
-    console.log(response.data[i].practices[0].name);
-    })
-     .fail(function(error){
-        console.log("fail");
+      response.data.forEach(function(doctor) {
+        displayDoctor(doctor);
       });
+    })
+    .fail(function(error){
+      console.log("fail");
+    });
   };
 
 
-// function displayDoctor(doctor) {
-//   $('#doctor-list').append("<li" + data.profile.first_name + "</li>");
-//   console.log(data.profile.first_name);
-// }
+
+function displayDoctor(doctor) {
+  $('#doctor-list').append("<li" + data.profile.first_name + "</li>");
+  console.log(data.profile.first_name);
+}
 
 exports.patientModule = Patient;
 
@@ -50,13 +53,35 @@ var Patient = require('./../js/patient.js').patientModule;
 // }
 //
 
+// function displayDoctor(doctorArray) {
+//   $('#doctor-list').append("<li" + doctorArray + "</li>");
+//   console.log(doctorArray);
+// }
 
-$(document).ready(function(){
-  var newPatient = new Patient();
+
+
+// $(document).ready(function(){
+//   var newPatient = new Patient();
+//   $('#find-doctor').submit(function(event) {
+//     event.preventDefault();
+//     var medicalIssue = $('#issue').val();
+//     newPatient.getDoctors(medicalIssue);
+//   });
+// });
+
+//
+var displayDoctor = function(doctorData) {
+  $("#doctor-list").append('<li>' + doctorData.practices[0].name + '</li>');
+  console.log(doctorData);
+};
+
+$(document).ready(function() {
+  var patient = new Patient();
   $('#find-doctor').submit(function(event) {
     event.preventDefault();
-    var medicalIssue = $('#issue').val();
-    newPatient.getDoctors(medicalIssue);
+    $("#issue").val("");
+    var issue = $("#issue").val();
+    patient.getDoctors(issue, displayDoctor);
   });
 });
 
