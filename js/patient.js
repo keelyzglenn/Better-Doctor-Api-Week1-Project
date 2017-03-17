@@ -1,9 +1,9 @@
 var apiKey = require('./../.env').apiKey;
 
-function Doctor(){
+function Patient(){
 }
 
-Doctor.protoype.getDoctors = function(medicalIssue) {
+Patient.protoype.getDoctors = function(medicalIssue) {
   $.get('https://api.betterdoctor.com/2016-03-01/doctors?query='+ medicalIssue+'&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&user_key=' + apiKey)
    .then(function(result) {
       console.log(result);
@@ -13,4 +13,8 @@ Doctor.protoype.getDoctors = function(medicalIssue) {
     });
 };
 
-exports.doctorModule = Doctor;
+function displayDoctors() {
+  $('#doctor-list').append("<li" + doctor + "</li>");
+}
+
+exports.patientModule = Patient;
