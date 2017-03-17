@@ -2,10 +2,12 @@ var apiKey = require('./../.env').apiKey;
 
 function Patient(){
   this.displayDoctor = function(doctorData) {
-    $("#doctor-list").append('<div> <p class="doc">' + doctorData.practices[0].name + "</p>" + "<p>" + doctorData.profile.first_name + " " + doctorData.profile.last_name + '</p> </div>');
+    $("#doctor-list").append('<div class="doc"> <p class="practice">' + doctorData.practices[0].name + '</p>' + '<p class="names">' + doctorData.profile.first_name + " " + doctorData.profile.last_name + ", " + doctorData.profile.title  + '</p>' + '<p><a href=' + doctorData.practices[0].website + '> Contact </a></p> </div>');
     console.log(doctorData);
   };
 }
+
+
 
 
 

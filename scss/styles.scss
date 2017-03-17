@@ -1,0 +1,64 @@
+.header {
+  #photo-carousel {
+    height: 700px;
+  }
+  img {
+    height: 700px !important;
+    width: 100%;
+  }
+  .title {
+    margin-bottom: 400px;
+    text-align: left;
+    font-size: 600px;
+  }
+  h3 {
+    font-size: 50px;
+  }
+}
+
+.form {
+  height: 400px;
+  background-color: teal;
+
+  h1 {
+    padding-top: 60px;
+    text-align: center;
+  }
+  #find-doctor {
+    text-align: center;
+    padding-top: 90px;
+    label {
+      margin-right: 30px;
+      font-size: 30px;
+    }
+    input {
+      padding-top: 7px;
+    }
+    button {
+      margin-left: 10px;
+      margin-bottom: 7px;
+    }
+  }
+}
+
+.results {
+  text-align: center;
+  #doctor-list{
+    text-align: center;
+  }
+  .practice {
+    font-size: 30px;
+    font-weight: bold;
+  }
+  .names {
+    font-size: 15px;
+  }
+
+  .doc {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10px;
+    text-align: left;
+  }
+
+}
