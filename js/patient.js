@@ -1,9 +1,9 @@
 var apiKey = require('./../.env').apiKey;
 
 function Patient(){
-  this.displayDoctor = function(doctorData) {
-    $("#doctor-list").append('<div class="doc"> <p class="practice">' + doctorData.practices[0].name + '</p>' + '<p class="names">' + doctorData.profile.first_name + " " + doctorData.profile.last_name + ", " + doctorData.profile.title  + '</p>' + '<p><a href=' + doctorData.practices[0].website + '> Contact </a></p> </div>');
-    console.log(doctorData);
+  this.displayDoctor = function(doctor) {
+    $("#doctor-list").append('<div class="doc"> <p class="practice">' + doctor.practices[0].name + '</p>' + '<p class="names">' + doctor.profile.first_name + " " + doctor.profile.last_name + ", " + doctor.profile.title  + '</p>' + '<p><a href=' + doctor.practices[0].website + '> Contact </a></p> </div>');
+    console.log(doctor);
   };
 }
 
