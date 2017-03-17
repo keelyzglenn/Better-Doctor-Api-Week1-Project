@@ -1,9 +1,15 @@
 var Patient = require('./../js/patient.js').patientModule;
 
 // function displayDoctor(doctor) {
-//   $('#doctor-list').append("<li" + doctor.location_slug + "</li>");
-//   console.log(doctor.location_slug);
+//   $('#doctor-list').append("<li" + data.profile.first_name + "</li>");
+//   console.log(data.profile.first_name);
 // }
+
+// function displayDoctor(data) {
+//   // $('#doctor-list').append("<li>" + data.profile.first_name + "</li>");
+//   console.log(data.profile.first_name);
+// }
+//
 
 
 $(document).ready(function(){

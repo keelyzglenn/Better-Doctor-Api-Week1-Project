@@ -17,7 +17,9 @@ Patient.prototype.getDoctors = function(medicalIssue) {
   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + medicalIssue + "&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
     .then(function(response) {
         response.data.forEach(function(data){
+        // displayDoctor(data.profile);
         console.log(data.profile.first_name);
+        // console.log(data.profile.last_name);
       });
       })
      .fail(function(error){
@@ -27,8 +29,8 @@ Patient.prototype.getDoctors = function(medicalIssue) {
 
 
 // function displayDoctor(doctor) {
-//   $('#doctor-list').append("<li" + doctor.name + "</li>");
-//   console.log(doctor.name);
+//   $('#doctor-list').append("<li" + data.profile.first_name + "</li>");
+//   console.log(data.profile.first_name);
 // }
 
 exports.patientModule = Patient;
