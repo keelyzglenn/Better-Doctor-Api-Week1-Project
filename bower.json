@@ -1,5 +1,5 @@
 {
-  "name": "alarm",
+  "name": "doctor",
   "description": "alarm clock app",
   "main": "index.js",
   "license": "ISC",

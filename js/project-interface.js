@@ -1,1 +1,1 @@
-var Weather = require('./../js/weather.js').weatherModule;
+var Doctor = require('./../js/doctor.js').doctorModule;
