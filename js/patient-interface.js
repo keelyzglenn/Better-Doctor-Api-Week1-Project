@@ -1,9 +1,9 @@
 var Patient = require('./../js/patient.js').patientModule;
 
-function displayDoctor(doctor) {
-  $('#doctor-list').append("<li" + doctor.name + "</li>");
-  console.log(doctor.name);
-}
+// function displayDoctor(doctor) {
+//   $('#doctor-list').append("<li" + doctor.location_slug + "</li>");
+//   console.log(doctor.location_slug);
+// }
 
 
 $(document).ready(function(){
