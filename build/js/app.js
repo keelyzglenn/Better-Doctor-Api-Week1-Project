@@ -6,30 +6,51 @@ var apiKey = require('./../.env').apiKey;
 
 function Patient(){
 }
+//
+// Patient.prototype.getDoctors = function(medicalIssue) {
+//   $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=toothache&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
+//    .then(function(result) {
+//       console.log(result);
+//     })
+//    .fail(function(error){
+//       console.log("fail");
+//     });
+// };
 
-Patient.protoype.getDoctors = function(medicalIssue) {
-  $.get('https://api.betterdoctor.com/2016-03-01/doctors?query='+ medicalIssue+'&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&user_key=' + apiKey)
-   .then(function(result) {
-      console.log(result);
-    })
+
+Patient.prototype.getDoctor = function(medicalIssue, displayDoctor) {
+  $.get("https://api.betterdoctor.com/2016-03-01/doctors?query=" + medicalIssue + "&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&skip=0&limit=10&user_key=" + apiKey)
+   .then(function(response) {
+        response.data.forEach(function(doctor){
+        displayDoctor(doctor);
+        console.log("doctor");
+      });
+   })
    .fail(function(error){
-      console.log("fail");
+      $('#doctor-list').text("this is broken");
     });
 };
 
-function displayDoctors() {
-  $('#doctor-list').append("<li" + doctor + "</li>");
-}
+// function displayDoctor(doctor) {
+//   $('#doctor-list').append("<li" + doctor.name + "</li>");
+//   console.log(doctor.name);
+// }
 
 exports.patientModule = Patient;
 
 },{"./../.env":1}],3:[function(require,module,exports){
 var Patient = require('./../js/patient.js').patientModule;
 
+function displayDoctor(doctor) {
+  $('#doctor-list').append("<li" + doctor.name + "</li>");
+  console.log(doctor.name);
+}
+
+
 $(document).ready(function(){
   var newPatient = new Patient();
   $('#find-doctor').submit(function(event) {
-    event.preventDefualt();
+    event.preventDefault();
     var medicalIssue = $('#issue').val();
     newPatient.getDoctors(medicalIssue);
   });
